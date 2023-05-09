@@ -1,0 +1,29 @@
+{%extends 'polls/teste.html'%}
+{%block content%}
+<body>
+    <div class="conteiner">
+        <form action="{% url 'polls:vote' question.id%}">
+            {%csrf_token%}
+            <fieldset>
+                <legend>
+                    <h1>
+                        {{question.question_text}}
+                    </h1>
+                </legend>
+                {% if error_message %}
+                    <p><strong>{{error_message}}</strong></p>
+                {%endif%}
+                {% for chocie in question.choice_set.all %}
+                    <input type="radio" name = 'choice'id="choice{{ forloop.counter }}" value="{{choice.id}}">
+                    <label for="choice{{ forloop.counter }}">
+                        {{ choice.choice_text }}   
+                    </label><br>
+                {%endfor%}
+            </fieldset>
+            <input type="submit" value="vote">
+        </form>
+    <div class="Botão_voltar">
+        <button><a href="{% url 'polls:index'%}">Voltar</a></button>
+    </div>
+</body>
+{%endblock%}

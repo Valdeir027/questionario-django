@@ -1,0 +1,22 @@
+%extends 'polls/teste.html%
+
+
+{%block content%}
+<div class="titulo">
+    <h1>{{question.question_text}}</h1>
+</div>
+<div class="bloco_de_resultados">
+    <ul>
+        {%for choice in question.choice_set.all%}
+        <li>{{choice.choice_text}} -- {{choice.votes}} vote{{ choice.votes| pluralize}}</li>
+        {%endfor%}
+    </ul>
+</div>
+<div class="botao_votar">
+    <button>
+        <a href="{% url 'polls:detail' question.id%}"> Vote novamente</a>
+    </button>
+    
+</div>
+
+{%endblock%}
