@@ -2,8 +2,8 @@
 {%block content%}
 <body>
     <div class="conteiner">
-        <form action="{% url 'polls:vote' question.id%}">
-            <!-- {%csrf_token%} -->
+        <form method="post" action="{% url 'polls:vote' question.id%}">
+            {%csrf_token%}
             <fieldset>
                 <legend>
                     <h1>
